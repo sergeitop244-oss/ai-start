@@ -4,6 +4,7 @@ import asyncio
 from dotenv import load_dotenv
 from groq import Groq 
 from aiogram import Bot, Dispatcher,types
+from aiogram.filters import Command
 from langchain_groq import ChatGroq
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -37,21 +38,26 @@ rag_prompt = ChatPromptTemplate.from_template("""
 rag_llm = ChatGroq(model="openai/gpt-oss-120b",api_key=os.getenv("GROQ_API_KEY")) 
 rag_chain = rag_prompt | rag_llm
 
-groq_client =Groq(api_key=os.getenv("GROQ_API_KEY"))
+groq_client =Groq(api_key=os.getenv("GROQ_API_KEY"))  
 bot =Bot(token=os.getenv("TELEGRAM_BOT_TOKEN"))
 dp = Dispatcher()
 
 # история деологов для каждого пользователя 
 histories = {}
 
+@dp.message(Command("start"))
+async def cmd_start(message: types.Message):
+    await message.answer(
+        "Привет! Я AI-помощник Хаджиди.\n\n"
+        "Задай мне любой вопрос — я отвечу, опираясь на базу знаний.") 
 @dp.message()
-async def handle_message(message:types.Message):
+async def handle_message(message: types.Message):
     question = message.text
 
-    docs = vectorstore.similarity_search(question,k=3)
-    context ="\n\n".join(doc.page_content for doc in docs)
+    docs = vectorstore.similarity_search(question, k=3)
+    context = "\n\n".join(doc.page_content for doc in docs)
+    answer = rag_chain.invoke({"context": context, "question": question})
 
-    answer = rag_chain.invoke({"context": context,"question": question})
     await message.answer(answer.content)
 
 async def start_bot():

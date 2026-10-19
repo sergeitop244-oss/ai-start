@@ -87,6 +87,37 @@ footer {
     width: 90px;
     height: 90px;
     object-fit: cover;
+    margin-right: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+/* Стили для кнопки Заказать */
+.order-button {
+    background-color: #ff6b35;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: background-color 0.2s;
+}
+.order-button:hover {
+    background-color: #e55a2b;
+}
+
+/* Возвращаем цене нормальный вид */
+.price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff6b35;
+    white-space: nowrap;
+
+}
+.item-info {
+    flex: 1; /* Растягивает блок с текстом на всё свободное место */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

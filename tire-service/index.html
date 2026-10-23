@@ -1,0 +1,34 @@
+<main>
+    <h2>Наши услуги</h2>
+    <div class="service-list">
+        <div class="service-item"><h3>Замена шины (R13-R15)</h3><span class="price">от 300 ₽</span></div>
+        <div class="service-item"><h3>Балансировка колеса</h3><span class="price">от 200 ₽</span></div>
+        <div class="service-item"><h3>Правка стального диска</h3><span class="price">от 500 ₽</span></div>
+        <div class="service-item"><h3>Полный комплекс (4 колеса)</h3><span class="price">от 1500 ₽</span></div>
+    </div>
+
+    <div class="booking-section">
+        <h2>Записаться на сервис</h2>
+        <p>Оставьте заявку, и мы перезвоним!</p>
+        <form id="bookingForm">
+            <input type="text" id="clientName" placeholder="Ваше имя" required>
+            <input type="tel" id="clientPhone" placeholder="Ваш телефон" required>
+            <select id="carModel" required>
+                <option value="" disabled selected>Выберите марку авто</option>
+                <option value="Лада">Лада</option>
+                <option value="Kia">Kia</option>
+                <option value="Toyota">Toyota</option>
+                <option value="BMW">BMW</option>
+            </select>
+            <button type="submit" class="submit-btn">Отправить заявку</button>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <p>г. Уфа, ул. Автомобильная, 15</p>
+    <p>Телефон: +7 (999) 765-43-21</p>
+</footer>
+
+<script src="script.js"></script>
+<link rel="stylesheet" href="style.css">
